@@ -6,8 +6,8 @@ read_csv_from_s3 <- function(bucket, key, version=NULL, header=TRUE) {
         Bucket = bucket,
         Key = key,
         VersionId = version
-      )$Body)) |>
-    dplyr::mutate(across(lubridate::is.instant, as.Date), header=header)
+      )$Body), header=header) |>
+    dplyr::mutate(across(lubridate::is.instant, as.Date))
   return(out)
 }
 
